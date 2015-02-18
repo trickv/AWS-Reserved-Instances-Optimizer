@@ -131,7 +131,7 @@ if __name__ == '__main__':
 
         if running < res.instance_count:
 
-            print "ERR: only %i running %s instances in %s, but %s are " \
+            print "Notice: only %i running %s instances in %s, but %s are " \
                   "reserved!" % (running, res.instance_type,
                           res.availability_zone, res.instance_count)
 
