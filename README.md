@@ -2,21 +2,18 @@
 
 Script to analyze reserved instance utilization.
 
-Currently: assumes 1-year heavy utilization reserved instances.
+This is a fork of https://github.com/manos/AWS-Reserved-Instances-Optimizer but with all the handling for costs stripped out to keep it dead simple; for my purposes all I care about is the count of instances I'm missing.
 
 # Identifies:
-* Reservations that aren't being used (and the total monthly cost/waste)
+* Count of reservations that aren't being used
 * Running instances that aren't reserved
-* Cost savings if you were to reserve all running on-demand instances
-* Time to recoup up-front reservation costs
-
-Supported regions: us-east-1, us-west-1, us-west-2, eu-west-1.
 
 ## Prerequisites
-You'll need to install `boto` and `texttable`:
+You'll need to install `boto` and `texttable` into a virtualenv:
 ```
-easy_install boto
-easy_install texttable
+virtualenv env
+source env/bin/activate
+pip install boto texttable
 ```
 
 Then configure `boto` with your AWS key:
