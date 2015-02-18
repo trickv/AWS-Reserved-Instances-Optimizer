@@ -108,7 +108,8 @@ if __name__ == '__main__':
                       "here. Nothing to do. (try --vpc?)")
         sys.exit(1)
 
-    all_res = [(res.instance_type, res.availability_zone,
+    all_res = [(res.instance_type + '-' + ('windows' if res.description.startswith('Windows') else 'linux'),
+                res.availability_zone,
                 res.instance_count) for res in active_reservations]
     res_dict = summarize_tuples(all_res)
 
@@ -136,7 +137,8 @@ if __name__ == '__main__':
 
     ''' identify non-reserved running instances '''
 
-    all_instances = [(ins.instance_type, ins.placement, 1)
+    all_instances = [(ins.instance_type + '-' + (ins.platform if ins.platform is not None else 'linux'),
+                     ins.placement, 1)
                      for ins in instances if "running" in ins.state]
     ins_dict = summarize_tuples(all_instances).iteritems()
 
